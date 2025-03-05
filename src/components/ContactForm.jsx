@@ -11,7 +11,7 @@ const initialValues = {
 
 const FeedbackSchema = Yup.object().shape({
     name: Yup.string().matches(/^[a-zA-Zа-яА-ЯёЁіІїЇєЄ' -]+$/, "Invalid name format").min(3, "Too short").max(50, "Too long").required("Required"),
-    number: Yup.string().matches(/^\+?[0-9\s\-()]{7,20}$/, "Invalid phone number").required("Required"),
+    number: Yup.string().matches(/^\+?[0-9\s\-()]{7,20}$/, "Invalid phone number").required("Required").min(7).max(7, "Too long"),
 });
 
 
@@ -42,7 +42,7 @@ export default function ContactForm({addContact}){
                     <Field className={css.input} type="tel" name="number" id={numberField}/>
                     <ErrorMessage name="number" component="span" />
                 </div>
-                <button onSubmit={addContact} type="submit">Add contact</button>
+                <button type="submit">Add contact</button>
                 
             </Form>
 

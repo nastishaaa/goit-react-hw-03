@@ -20,11 +20,26 @@ function App() {
 
   const [filter, setFilter] = useState('');
 
-  const addContact = (newCon) => {
-    setContact((prevContacts) => {
-      return [...prevContacts, newCon];
-    })
+  const formatPhoneNumber = (number) => {
+    const cleaned = ('' + number).replace(/\D/g, ''); 
+    const match = cleaned.match(/^(\d{3})(\d{2})(\d{2})$/);
+    if (match) {
+      return `${match[1]}-${match[2]}-${match[3]}`; 
+    }
+    return number; 
   }
+  
+  const addContact = (newCon) => {
+    const formattedContact = {
+      ...newCon,
+      number: formatPhoneNumber(newCon.number) 
+    };
+    
+    setContact((prevContacts) => {
+      return [...prevContacts, formattedContact];
+    });
+  }
+  
 
   const deleteContact = (contactId) => {
     setContact((prevContacts) => {
