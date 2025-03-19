@@ -1,5 +1,5 @@
 import Contact from './Contact'
-import css from './SearchBox.module.css'
+import css from './ContactList.module.css'
 
 export default function ContactList({ contacts, onDelete}) {
     return (
